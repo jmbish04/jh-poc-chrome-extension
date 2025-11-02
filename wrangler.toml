@@ -1,0 +1,30 @@
+name = "jh-poc-chrome-extension"
+main = "src/index.ts"
+compatibility_date = "2025-03-07"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+  enabled = true
+  head_sampling_rate = 1
+
+[ai]
+  binding = "AI"
+
+[[d1_databases]]
+  binding = "DB"
+  database_name = "jobs-db"
+  database_id = "00000000000000000000000000000000"
+
+[[vectorize]]
+  binding = "VECTORIZE"
+  index_name = "jobs-index"
+
+[[queues.producers]]
+  queue = "deep-scrape"
+  binding = "DEEP_SCRAPE_QUEUE"
+
+[[workflows]]
+  name = "stage-to-production"
+  binding = "STAGE_TO_PRODUCTION"
+  class_name = "StageToProductionWorkflow"
+  path = "./workflows/stage-to-production.ts"
