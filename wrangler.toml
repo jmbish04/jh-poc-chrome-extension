@@ -1,0 +1,26 @@
+name = "jh-poc-chrome-extension"
+main = "src/index.ts"
+compatibility_date = "2025-03-07"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jh-poc-chrome-extension-db"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[ai]
+binding = "AI"
+
+[[workflows]]
+binding = "SELF_HEAL_WORKFLOW"
+name = "self-heal-workflow"
+
+[[queues.consumers]]
+queue = "INGEST_QUEUE"
+binding = "INGEST_QUEUE"
