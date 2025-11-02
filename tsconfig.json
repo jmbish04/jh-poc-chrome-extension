@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "@cloudflare/workers-types"
+    ],
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "noEmit": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ]
+}

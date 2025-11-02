@@ -1,0 +1,38 @@
+name = "jh-poc-chrome-extension"
+main = "src/index.ts"
+compatibility_date = "2025-03-07"
+compatibility_flags = ["nodejs_compat"]
+usage_model = "standard"
+
+[observability]
+  enabled = true
+  head_sampling_rate = 1
+
+[browser]
+  binding = "BROWSER"
+
+[ai]
+  binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jobs-db"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[[kv_namespaces]]
+binding = "SELECTOR_KV"
+id = "00000000000000000000000000000000"
+
+[durable_objects]
+bindings = [
+  { name = "EXTENSION_BRIDGE", class_name = "ExtensionBridge" }
+]
+
+[[queues.consumers]]
+queue = "DEEP_SCRAPE_QUEUE"
+script_name = "jh-poc-chrome-extension"
+
+[[workflows]]
+name = "self-healing"
+class_name = "SelfHealingWorkflow"
+script_name = "jh-poc-chrome-extension"
