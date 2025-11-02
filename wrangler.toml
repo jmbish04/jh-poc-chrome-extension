@@ -1,0 +1,42 @@
+name = "jh-poc-chrome-extension"
+main = "src/index.ts"
+compatibility_date = "2025-03-07"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[[durable_objects.bindings]]
+name = "AGENT_HUB"
+class_name = "AgentHub"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["AgentHub"]
+
+[[queues.producers]]
+binding = "INGEST_QUEUE"
+queue = "ingest-queue"
+
+[[queues.producers]]
+binding = "DEEP_SCRAPE_QUEUE"
+queue = "deep-scrape-queue"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jh_poc_chrome_extension"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[vectorize]
+binding = "VECTORIZE"
+index_name = "agent-hub-index"
+
+[ai]
+binding = "AI"
+
+[workflows]
+binding = "WORKFLOWS"
+
+[browser]
+binding = "BROWSER"
