@@ -1,0 +1,25 @@
+name = "jh-poc-chrome-extension"
+main = "src/index.ts"
+compatibility_date = "2025-03-07"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[triggers]
+crons = ["0 * * * *"]
+
+[[d1_databases]]
+binding = "JOB_SCHEDULE_DB"
+database_name = "job-schedule-db"
+database_id = "job-schedule-db"
+migrations_dir = "migrations"
+
+[[durable_objects.bindings]]
+name = "JOB_COORDINATOR"
+class_name = "JobCoordinator"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["JobCoordinator"]
